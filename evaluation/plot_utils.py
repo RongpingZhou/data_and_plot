@@ -16,7 +16,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-
+import matplotlib as mpl
+mpl.rcParams['font.family'] = "Times New Roman"
 
 def _non_linear_scaling(performance_profiles,
                         tau_list,
@@ -281,13 +282,17 @@ def plot_interval_estimates(point_estimates,
     if idx != 0:
       ax.set_yticks([])
     else:
-      ax.set_yticklabels(algorithms, fontsize='x-large')
-    ax.set_title(metric_name, fontsize='xx-large')
+    #   ax.set_yticklabels(algorithms, fontsize='x-large')
+      ax.set_yticklabels(algorithms, fontsize=28)
+    # ax.set_title(metric_name, fontsize='xx-large')
+    ax.set_title(metric_name, fontsize=28)
     ax.tick_params(axis='both', which='major')
-    _decorate_axis(ax, ticklabelsize='xx-large', wrect=5)
+    # _decorate_axis(ax, ticklabelsize='xx-large', wrect=5)
+    _decorate_axis(ax, ticklabelsize=28, wrect=5)
     ax.spines['left'].set_visible(False)
     ax.grid(True, axis='x', alpha=0.25)
-  fig.text(0.4, xlabel_y_coordinate, xlabel, ha='center', fontsize='xx-large')
+#   fig.text(0.4, xlabel_y_coordinate, xlabel, ha='center', fontsize='xx-large')
+  fig.text(0.4, xlabel_y_coordinate, xlabel, ha='center', fontsize=28)
   plt.subplots_adjust(wspace=kwargs.pop('wspace', 0.11), left=0.0)
   print("Inside plot_interval_estimates, xlabel:", xlabel)
   return fig, axes
