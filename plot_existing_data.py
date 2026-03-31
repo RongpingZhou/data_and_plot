@@ -204,7 +204,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -214,10 +214,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    # for key, value in hms_dict.items():
+    # for key, value in hns_dict.items():
     #     print(f"{key}: ")
     #     print(f"{value}")    
 
@@ -227,7 +227,7 @@ def main():
     #     metrics.aggregate_mean(x),
     #     metrics.aggregate_optimality_gap(x)])
         
-    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
 
     aggregate_scores = {
         "real world system": np.array([0.40972222, 0.41041667, 0.42638889, 0.57361111]), 
@@ -256,7 +256,7 @@ def main():
         print(f"{value}")        
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig2, ax2 = plot_utils.plot_interval_estimates(
@@ -264,14 +264,15 @@ def main():
         aggregate_score_cis,
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig2.set_size_inches(12, 4)
     
     plt.figure(fig2.number)
     
-    fig2.savefig("hms_all_3sys.png", dpi=300, bbox_inches='tight')
+    fig2.savefig("hns_all_3sys.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -285,7 +286,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig3, ax3 = plot_utils.plot_interval_estimates(
@@ -295,14 +296,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig3.set_size_inches(12, 4)
     
     plt.figure(fig3.number)
     
-    fig3.savefig("hms_median_3sys.png", dpi=300, bbox_inches='tight')
+    fig3.savefig("hns_median_3sys.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -315,7 +317,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig4, ax4 = plot_utils.plot_interval_estimates(
@@ -325,14 +327,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig4.set_size_inches(12, 4)
     
     plt.figure(fig4.number)
     
-    fig4.savefig("hms_iqm_3sys.png", dpi=300, bbox_inches='tight')
+    fig4.savefig("hns_iqm_3sys.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -345,7 +348,7 @@ def main():
     print(f"aggregate_score_cis_mean: type: {type(aggregate_score_cis_mean)}, data: {aggregate_score_cis_mean}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig5, ax5 = plot_utils.plot_interval_estimates(
@@ -355,14 +358,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig5.set_size_inches(12, 4)
     
     plt.figure(fig5.number)
     
-    fig5.savefig("hms_mean_3sys.png", dpi=300, bbox_inches='tight')
+    fig5.savefig("hns_mean_3sys.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -375,7 +379,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig6, ax6 = plot_utils.plot_interval_estimates(
@@ -385,14 +389,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig6.set_size_inches(12, 4)
     
     plt.figure(fig6.number)
     
-    fig6.savefig("hms_optimality_gap_3sys.png", dpi=300, bbox_inches='tight')
+    fig6.savefig("hns_optimality_gap_3sys.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -469,7 +474,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -479,10 +484,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    # for key, value in hms_dict.items():
+    # for key, value in hns_dict.items():
     #     print(f"{key}: ")
     #     print(f"{value}")    
 
@@ -492,7 +497,7 @@ def main():
     #     metrics.aggregate_mean(x),
     #     metrics.aggregate_optimality_gap(x)])
         
-    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
 
     aggregate_scores = {
         "real world input": np.array([0.70486111, 0.72291667, 0.75      , 0.27517361]), 
@@ -519,7 +524,7 @@ def main():
         print(f"{value}")        
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig7, ax7 = plot_utils.plot_interval_estimates(
@@ -527,14 +532,15 @@ def main():
         aggregate_score_cis,
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig7.set_size_inches(12, 4)
     
     plt.figure(fig7.number)
     
-    fig7.savefig("hms_all_real_input.png", dpi=300, bbox_inches='tight')
+    fig7.savefig("hns_all_real_input.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -548,7 +554,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig8, ax8 = plot_utils.plot_interval_estimates(
@@ -558,14 +564,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig8.set_size_inches(12, 4)
     
     plt.figure(fig8.number)
     
-    fig8.savefig("hms_median_real_input.png", dpi=300, bbox_inches='tight')
+    fig8.savefig("hns_median_real_input.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -578,7 +585,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig9, ax9 = plot_utils.plot_interval_estimates(
@@ -588,14 +595,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig9.set_size_inches(12, 4)
     
     plt.figure(fig9.number)
     
-    fig9.savefig("hms_iqm_real_input.png", dpi=300, bbox_inches='tight')
+    fig9.savefig("hns_iqm_real_input.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -609,7 +617,7 @@ def main():
 
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig10, ax10 = plot_utils.plot_interval_estimates(
@@ -619,14 +627,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig10.set_size_inches(12, 4)
     
     plt.figure(fig10.number)
     
-    fig10.savefig("hms_mean_real_input.png", dpi=300, bbox_inches='tight')
+    fig10.savefig("hns_mean_real_input.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -639,7 +648,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig11, ax11 = plot_utils.plot_interval_estimates(
@@ -649,14 +658,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig11.set_size_inches(12, 4)
     
     plt.figure(fig11.number)
     
-    fig11.savefig("hms_optimality_gap_real_input.png", dpi=300, bbox_inches='tight')
+    fig11.savefig("hns_optimality_gap_real_input.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -734,7 +744,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -744,10 +754,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    # for key, value in hms_dict.items():
+    # for key, value in hns_dict.items():
     #     print(f"{key}: ")
     #     print(f"{value}")    
 
@@ -757,7 +767,7 @@ def main():
     #     metrics.aggregate_mean(x),
     #     metrics.aggregate_optimality_gap(x)])
         
-    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    # aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
 
     aggregate_scores = {
         "real world system": np.array([0.40972222, 0.41041667, 0.42638889, 0.57361111]), 
@@ -786,7 +796,7 @@ def main():
         print(f"{value}")        
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig12, ax12 = plot_utils.plot_interval_estimates(
@@ -794,14 +804,15 @@ def main():
         aggregate_score_cis,
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig12.set_size_inches(12, 4)
     
     plt.figure(fig2.number)
     
-    fig12.savefig("hms_all_real.png", dpi=300, bbox_inches='tight')
+    fig12.savefig("hns_all_real.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -816,7 +827,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig13, ax13 = plot_utils.plot_interval_estimates(
@@ -826,14 +837,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig13.set_size_inches(12, 4)
     
     plt.figure(fig13.number)
     
-    fig13.savefig("hms_median_real.png", dpi=300, bbox_inches='tight')
+    fig13.savefig("hns_median_real.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -846,7 +858,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig14, ax14 = plot_utils.plot_interval_estimates(
@@ -856,7 +868,8 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig14.set_size_inches(12, 4)
@@ -864,7 +877,7 @@ def main():
     plt.figure(fig14.number)
     
 
-    fig14.savefig("hms_iqm_real.png", dpi=300, bbox_inches='tight')
+    fig14.savefig("hns_iqm_real.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -878,7 +891,7 @@ def main():
 
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig15, ax15 = plot_utils.plot_interval_estimates(
@@ -888,14 +901,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig15.set_size_inches(12, 4)
     
     plt.figure(fig15.number)
     
-    fig15.savefig("hms_mean_real.png", dpi=300, bbox_inches='tight')
+    fig15.savefig("hns_mean_real.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -908,7 +922,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig16, ax16 = plot_utils.plot_interval_estimates(
@@ -918,14 +932,15 @@ def main():
         algorithms=available_algorithms,
         subfigure_width=3.4,
         row_height=1.0,
-        xlabel_y_coordinate=-0.05,
+        # xlabel_y_coordinate=-0.05,
+        xlabel_y_coordinate=-0.09,
         xlabel='Human Normalized Score')
 
     fig16.set_size_inches(12, 4)
     
     plt.figure(fig16.number)
     
-    fig16.savefig("hms_optimality_gap_real.png", dpi=300, bbox_inches='tight')
+    fig16.savefig("hns_optimality_gap_real.png", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
