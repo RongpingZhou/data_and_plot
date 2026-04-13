@@ -265,7 +265,7 @@ def main():
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig2.set_size_inches(12, 4)
@@ -297,7 +297,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig3.set_size_inches(12, 4)
@@ -328,7 +328,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig4.set_size_inches(12, 4)
@@ -359,7 +359,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig5.set_size_inches(12, 4)
@@ -390,7 +390,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig6.set_size_inches(12, 4)
@@ -533,7 +533,7 @@ def main():
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig7.set_size_inches(12, 4)
@@ -565,7 +565,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig8.set_size_inches(12, 4)
@@ -596,7 +596,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig9.set_size_inches(12, 4)
@@ -628,7 +628,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig10.set_size_inches(12, 4)
@@ -659,7 +659,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig11.set_size_inches(12, 4)
@@ -805,7 +805,7 @@ def main():
         metric_names=['Median', 'IQM', 'Mean', 'Optimality Gap'],
         algorithms=available_algorithms,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig12.set_size_inches(12, 4)
@@ -838,7 +838,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig13.set_size_inches(12, 4)
@@ -869,7 +869,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig14.set_size_inches(12, 4)
@@ -902,7 +902,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig15.set_size_inches(12, 4)
@@ -933,7 +933,7 @@ def main():
         subfigure_width=3.4,
         row_height=1.0,
         # xlabel_y_coordinate=-0.05,
-        xlabel_y_coordinate=-0.09,
+        xlabel_y_coordinate=-0.12,
         xlabel='Human Normalized Score')
 
     fig16.set_size_inches(12, 4)
