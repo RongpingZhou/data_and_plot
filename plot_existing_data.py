@@ -188,9 +188,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -272,7 +272,7 @@ def main():
     
     plt.figure(fig2.number)
     
-    fig2.savefig("hns_all_3sys.png", dpi=300, bbox_inches='tight')
+    fig2.savefig("hns_all_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -304,7 +304,7 @@ def main():
     
     plt.figure(fig3.number)
     
-    fig3.savefig("hns_median_3sys.png", dpi=300, bbox_inches='tight')
+    fig3.savefig("hns_median_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -335,7 +335,7 @@ def main():
     
     plt.figure(fig4.number)
     
-    fig4.savefig("hns_iqm_3sys.png", dpi=300, bbox_inches='tight')
+    fig4.savefig("hns_iqm_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -366,7 +366,7 @@ def main():
     
     plt.figure(fig5.number)
     
-    fig5.savefig("hns_mean_3sys.png", dpi=300, bbox_inches='tight')
+    fig5.savefig("hns_mean_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -397,7 +397,7 @@ def main():
     
     plt.figure(fig6.number)
     
-    fig6.savefig("hns_optimality_gap_3sys.png", dpi=300, bbox_inches='tight')
+    fig6.savefig("hns_optimality_gap_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -458,9 +458,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -540,7 +540,7 @@ def main():
     
     plt.figure(fig7.number)
     
-    fig7.savefig("hns_all_real_input.png", dpi=300, bbox_inches='tight')
+    fig7.savefig("hns_all_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -572,7 +572,7 @@ def main():
     
     plt.figure(fig8.number)
     
-    fig8.savefig("hns_median_real_input.png", dpi=300, bbox_inches='tight')
+    fig8.savefig("hns_median_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -603,7 +603,7 @@ def main():
     
     plt.figure(fig9.number)
     
-    fig9.savefig("hns_iqm_real_input.png", dpi=300, bbox_inches='tight')
+    fig9.savefig("hns_iqm_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -635,7 +635,7 @@ def main():
     
     plt.figure(fig10.number)
     
-    fig10.savefig("hns_mean_real_input.png", dpi=300, bbox_inches='tight')
+    fig10.savefig("hns_mean_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -666,7 +666,7 @@ def main():
     
     plt.figure(fig11.number)
     
-    fig11.savefig("hns_optimality_gap_real_input.png", dpi=300, bbox_inches='tight')
+    fig11.savefig("hns_optimality_gap_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -728,9 +728,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -812,7 +812,7 @@ def main():
     
     plt.figure(fig2.number)
     
-    fig12.savefig("hns_all_real.png", dpi=300, bbox_inches='tight')
+    fig12.savefig("hns_all_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -845,7 +845,7 @@ def main():
     
     plt.figure(fig13.number)
     
-    fig13.savefig("hns_median_real.png", dpi=300, bbox_inches='tight')
+    fig13.savefig("hns_median_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -877,7 +877,7 @@ def main():
     plt.figure(fig14.number)
     
 
-    fig14.savefig("hns_iqm_real.png", dpi=300, bbox_inches='tight')
+    fig14.savefig("hns_iqm_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -909,7 +909,7 @@ def main():
     
     plt.figure(fig15.number)
     
-    fig15.savefig("hns_mean_real.png", dpi=300, bbox_inches='tight')
+    fig15.savefig("hns_mean_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -940,7 +940,7 @@ def main():
     
     plt.figure(fig16.number)
     
-    fig16.savefig("hns_optimality_gap_real.png", dpi=300, bbox_inches='tight')
+    fig16.savefig("hns_optimality_gap_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)

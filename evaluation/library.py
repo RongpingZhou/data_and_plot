@@ -93,7 +93,8 @@ class StratifiedBootstrap(arch_bs.IIDBootstrap):
       **kwargs: Keyword arguments, passed directly to `IIDBootstrap`.
     """
 
-    super().__init__(*args, random_state=random_state, **kwargs)
+    # super().__init__(*args, random_state=random_state, **kwargs)
+    super().__init__(*args, **kwargs)
     self._args_shape = args[0].shape
     self._num_tasks = self._args_shape[1]
     self._parameters = [self._num_tasks, task_bootstrap]
@@ -267,10 +268,12 @@ def get_interval_estimates(
   """
   interval_estimates, point_estimates = {}, {}
   for key, scores in score_dict.items():
+    # print(f"scores size: {scores.shape} and {scores.dtype}")
     logging.info('Calculating estimates for %s ...', key)
     if isinstance(scores, np.ndarray):
       stratified_bs = StratifiedBootstrap(
-          scores, task_bootstrap=task_bootstrap, random_state=random_state)
+        #   scores, task_bootstrap=task_bootstrap, random_state=random_state)
+          scores, task_bootstrap=task_bootstrap, seed=random_state)
       point_estimates[key] = func(scores)
     else:
       # Pass arrays as separate arguments, `task_bootstrap` is not supported

@@ -248,8 +248,8 @@ def plot_interval_estimates(point_estimates,
   figsize = (subfigure_width * num_metrics, row_height * len(algorithms))
   fig, axes = plt.subplots(nrows=1, ncols=num_metrics, figsize=figsize)
   if colors is None:
-    # color_palette = sns.color_palette(color_palette, n_colors=len(algorithms))
-    color_palette = sns.color_palette(color_palette, n_colors=len(algorithms)+1)
+    color_palette = sns.color_palette(color_palette, n_colors=len(algorithms))
+    # color_palette = sns.color_palette(color_palette, n_colors=len(algorithms)+1)
     # color_palette = color_palette[1:]  # Skip the first color to avoid plotting with white color
     colors = dict(zip(algorithms, color_palette))
     print(f"Colors used for plotting: {colors}")

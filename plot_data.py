@@ -100,11 +100,13 @@ def main():
     y1_data = []
     y2_data = []
 
+
     files = ['./datalogs/3systems/breakout-data-dqn-model-r10_000_000.npz',
              './datalogs/3systems/breakout-data-dqn-model-c10_000_000.npz',
              './datalogs/3systems/breakout-data-dqn-model-s10_000_000.npz']
     
     labels = ['real world system', 'real world input', 'simulation']
+
     f = 0
     
     for file_path in files:
@@ -150,9 +152,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -166,7 +168,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -176,10 +178,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    # for key, value in hms_dict.items():
+    # for key, value in hns_dict.items():
     #     print(f"{key}: ")
     #     print(f"{value}")    
 
@@ -189,7 +191,7 @@ def main():
         metrics.aggregate_mean(x),
         metrics.aggregate_optimality_gap(x)])
         
-    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
 
     aggregate_scores_3sys = copy.deepcopy(aggregate_scores)
     aggregate_score_cis_3sys = copy.deepcopy(aggregate_score_cis)
@@ -206,7 +208,7 @@ def main():
         print(f"{value}")        
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig2, ax2 = plot_utils.plot_interval_estimates(
@@ -221,7 +223,7 @@ def main():
     
     plt.figure(fig2.number)
     
-    fig2.savefig("hms_all_3sys.png", dpi=300, bbox_inches='tight')
+    fig2.savefig("hns_all_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -235,7 +237,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig3, ax3 = plot_utils.plot_interval_estimates(
@@ -252,7 +254,7 @@ def main():
     
     plt.figure(fig3.number)
     
-    fig3.savefig("hms_median_3sys.png", dpi=300, bbox_inches='tight')
+    fig3.savefig("hns_median_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -265,7 +267,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig4, ax4 = plot_utils.plot_interval_estimates(
@@ -282,7 +284,7 @@ def main():
     
     plt.figure(fig4.number)
     
-    fig4.savefig("hms_iqm_3sys.png", dpi=300, bbox_inches='tight')
+    fig4.savefig("hns_iqm_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -295,7 +297,7 @@ def main():
     print(f"aggregate_score_cis_mean: type: {type(aggregate_score_cis_mean)}, data: {aggregate_score_cis_mean}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig5, ax5 = plot_utils.plot_interval_estimates(
@@ -312,7 +314,7 @@ def main():
     
     plt.figure(fig5.number)
     
-    fig5.savefig("hms_mean_3sys.png", dpi=300, bbox_inches='tight')
+    fig5.savefig("hns_mean_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -325,7 +327,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig6, ax6 = plot_utils.plot_interval_estimates(
@@ -342,7 +344,7 @@ def main():
     
     plt.figure(fig6.number)
     
-    fig6.savefig("hms_optimality_gap_3sys.png", dpi=300, bbox_inches='tight')
+    fig6.savefig("hns_optimality_gap_3sys.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -403,9 +405,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -419,7 +421,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -429,10 +431,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    # for key, value in hms_dict.items():
+    # for key, value in hns_dict.items():
     #     print(f"{key}: ")
     #     print(f"{value}")    
 
@@ -442,7 +444,7 @@ def main():
         metrics.aggregate_mean(x),
         metrics.aggregate_optimality_gap(x)])
         
-    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
     
     aggregate_scores['real world input'] = copy.deepcopy(aggregate_scores_3sys['real world input'])
     aggregate_score_cis['real world input'] = copy.deepcopy(aggregate_score_cis_3sys['real world input'])
@@ -456,10 +458,10 @@ def main():
     
     for key, value in aggregate_score_cis.items():
         print(f"aggregate_score_cis {key}: ")
-        print(f"{value}")        
+        print(f"{value}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig7, ax7 = plot_utils.plot_interval_estimates(
@@ -474,7 +476,7 @@ def main():
     
     plt.figure(fig7.number)
     
-    fig7.savefig("hms_all_real_input.png", dpi=300, bbox_inches='tight')
+    fig7.savefig("hns_all_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -488,7 +490,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig8, ax8 = plot_utils.plot_interval_estimates(
@@ -505,7 +507,7 @@ def main():
     
     plt.figure(fig8.number)
     
-    fig8.savefig("hms_median_real_input.png", dpi=300, bbox_inches='tight')
+    fig8.savefig("hns_median_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -518,7 +520,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig9, ax9 = plot_utils.plot_interval_estimates(
@@ -535,7 +537,7 @@ def main():
     
     plt.figure(fig9.number)
     
-    fig9.savefig("hms_iqm_real_input.png", dpi=300, bbox_inches='tight')
+    fig9.savefig("hns_iqm_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -549,7 +551,7 @@ def main():
 
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig10, ax10 = plot_utils.plot_interval_estimates(
@@ -566,7 +568,7 @@ def main():
     
     plt.figure(fig10.number)
     
-    fig10.savefig("hms_mean_real_input.png", dpi=300, bbox_inches='tight')
+    fig10.savefig("hns_mean_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -579,7 +581,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig11, ax11 = plot_utils.plot_interval_estimates(
@@ -596,7 +598,7 @@ def main():
     
     plt.figure(fig11.number)
     
-    fig11.savefig("hms_optimality_gap_real_input.png", dpi=300, bbox_inches='tight')
+    fig11.savefig("hns_optimality_gap_real_input.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -658,9 +660,9 @@ def main():
             array_for_dict = np.vstack((array_for_dict, existing_array))
 
     # Save the training progress plot after all test steps are completed
-    # fig1.savefig("training_progress_final.png", dpi=300, bbox_inches='tight')
-    # fig3.savefig("training_progress_final3.png", dpi=300, bbox_inches='tight')
-    # print("*"*5 + " Training progress plot saved as 'training_progress_final.png'")
+    # fig1.savefig("training_progress_final.pdf", dpi=300, bbox_inches='tight')
+    # fig3.savefig("training_progress_final3.pdf", dpi=300, bbox_inches='tight')
+    # print("*"*5 + " Training progress plot saved as 'training_progress_final.pdf'")
 
     # fig, ax1 = plt.subplots()
     
@@ -674,7 +676,7 @@ def main():
         plt.pause(0.1)
         plt.show()
     
-    hms_dict = {}
+    hns_dict = {}
 
     for i in range(min(len(labels), array_for_dict.shape[0])):
         # The evaluation library expects 2D arrays: [num_runs, num_tasks]
@@ -684,10 +686,10 @@ def main():
         scores_2d = np.array(array_for_dict[i]).reshape(-1, 1)  # Convert 1D to 2D
         # print(f"Reshaped scores_2d for {labels[i]}: {scores_2d.shape}")
         # scores_2d = np.array(array_for_dict[i]).reshape(1, -1)  # Convert 1D to 2D
-        hms_dict[labels[i]] = scores_2d
-        # hms_dict[labels[i]] = array_for_dict[i]
+        hns_dict[labels[i]] = scores_2d
+        # hns_dict[labels[i]] = array_for_dict[i]
     
-    for key, value in hms_dict.items():
+    for key, value in hns_dict.items():
         print(f"{key}: ")
         print(f"{value}")    
 
@@ -697,7 +699,7 @@ def main():
         metrics.aggregate_mean(x),
         metrics.aggregate_optimality_gap(x)])
         
-    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hms_dict, aggregate_func, reps=50000)
+    aggregate_scores, aggregate_score_cis = rly.get_interval_estimates(hns_dict, aggregate_func, reps=50000)
     
     aggregate_scores['real world system'] = copy.deepcopy(aggregate_scores_3sys['real world system'])
     aggregate_score_cis['real world system'] = copy.deepcopy(aggregate_score_cis_3sys['real world system'])
@@ -714,7 +716,7 @@ def main():
         print(f"{value}")        
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig12, ax12 = plot_utils.plot_interval_estimates(
@@ -729,7 +731,7 @@ def main():
     
     plt.figure(fig2.number)
     
-    fig12.savefig("hms_all_real.png", dpi=300, bbox_inches='tight')
+    fig12.savefig("hns_all_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -744,7 +746,7 @@ def main():
     print(f"aggregate_score_cis_median: type: {type(aggregate_score_cis_median)}, data: {aggregate_score_cis_median}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig13, ax13 = plot_utils.plot_interval_estimates(
@@ -761,7 +763,7 @@ def main():
     
     plt.figure(fig13.number)
     
-    fig13.savefig("hms_median_real.png", dpi=300, bbox_inches='tight')
+    fig13.savefig("hns_median_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -774,7 +776,7 @@ def main():
     print(f"aggregate_score_cis_iqm: type: {type(aggregate_score_cis_iqm)}, data: {aggregate_score_cis_iqm}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig14, ax14 = plot_utils.plot_interval_estimates(
@@ -792,7 +794,7 @@ def main():
     plt.figure(fig14.number)
     
 
-    fig14.savefig("hms_iqm_real.png", dpi=300, bbox_inches='tight')
+    fig14.savefig("hns_iqm_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -806,7 +808,7 @@ def main():
 
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig15, ax15 = plot_utils.plot_interval_estimates(
@@ -823,7 +825,7 @@ def main():
     
     plt.figure(fig15.number)
     
-    fig15.savefig("hms_mean_real.png", dpi=300, bbox_inches='tight')
+    fig15.savefig("hns_mean_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
@@ -836,7 +838,7 @@ def main():
     print(f"aggregate_score_cis_optimality_gap: type: {type(aggregate_score_cis_optimality_gap)}, data: {aggregate_score_cis_optimality_gap}")
 
     # Use only the algorithms that actually have data
-    available_algorithms = list(hms_dict.keys())
+    available_algorithms = list(hns_dict.keys())
     print("*"*5 + " Available algorithms for plotting: ", available_algorithms)
     
     fig16, ax16 = plot_utils.plot_interval_estimates(
@@ -853,7 +855,7 @@ def main():
     
     plt.figure(fig16.number)
     
-    fig16.savefig("hms_optimality_gap_real.png", dpi=300, bbox_inches='tight')
+    fig16.savefig("hns_optimality_gap_real.pdf", dpi=300, bbox_inches='tight')
 
     if args.plot == 1:    
         plt.pause(0.1)
