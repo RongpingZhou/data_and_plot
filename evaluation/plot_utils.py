@@ -17,7 +17,26 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import matplotlib as mpl
+from pathlib import Path
+import pandas as pd
 mpl.rcParams['font.family'] = "Times New Roman"
+
+def read_rl_csv(metric: str, key: str, base_dir: str = ".") -> pd.DataFrame:
+    """
+    Read an RL training CSV file by metric folder and file key.
+
+    Args:
+        metric:   subfolder name, e.g. "ep_len_mean", "ep_rew_mean", "top_score"
+        key:      file stem, e.g. "real_world", "simulation",
+                  "simulation_with_real_world_input"
+        base_dir: root directory that contains the metric folders (default: ".")
+
+    Returns:
+        DataFrame with columns "Step" (x-axis) and "Value" (y-axis).
+    """
+    path = Path(base_dir) / metric / f"{key}.csv"
+    df = pd.read_csv(path)
+    return df[["Step", "Value"]].reset_index(drop=True)
 
 def _non_linear_scaling(performance_profiles,
                         tau_list,
@@ -213,6 +232,7 @@ def plot_interval_estimates(point_estimates,
                             row_height=0.37,
                             xlabel_y_coordinate=-0.1,
                             xlabel='Normalized Score',
+                            skip_color = 0,
                             **kwargs):
   """Plots various metrics with confidence intervals.
 
@@ -248,8 +268,8 @@ def plot_interval_estimates(point_estimates,
   figsize = (subfigure_width * num_metrics, row_height * len(algorithms))
   fig, axes = plt.subplots(nrows=1, ncols=num_metrics, figsize=figsize)
   if colors is None:
-    color_palette = sns.color_palette(color_palette, n_colors=len(algorithms))
-    # color_palette = sns.color_palette(color_palette, n_colors=len(algorithms)+1)
+    # color_palette = sns.color_palette(color_palette, n_colors=len(algorithms))
+    color_palette = sns.color_palette(color_palette, n_colors=len(algorithms)+skip_color)
     # color_palette = color_palette[1:]  # Skip the first color to avoid plotting with white color
     colors = dict(zip(algorithms, color_palette))
     print(f"Colors used for plotting: {colors}")
@@ -510,3 +530,101 @@ def plot_probability_of_improvement(
   twin_ax.yaxis.set_label_coords(1 + 0.7 * ylabel_x_coordinate, 1.0)
 
   return ax
+
+def plot_rl_curves(
+    data_dict,
+    colors=None,
+    legend_map=None,
+    title="RL Learning Curves",
+    x_label="Step",
+    y_label="Value",
+    y_lim=None,
+    figsize=(10, 6),
+    window_size=10,
+    is_legend=True,
+    save_path=None,
+    plot_raw=True,
+    raw_alpha=0.35,
+    raw_linewidth=0.7,
+    smooth_linewidth=2,
+    dpi=800,
+    fontsize_title=None,
+    fontsize_label=None,
+    fontsize_legend=None,
+    fontsize_tick=None,
+    skip_color = 0,
+):
+    """
+    Plot RL training curves with optional rolling-average smoothing.
+    Uses MatplotlibStyle settings (font, colors, tick sizes) applied globally.
+    Font sizes fall back to rcParams values when not explicitly provided.
+
+    Args:
+        data_dict:       dict mapping key -> DataFrame with "Step" and "Value" columns.
+        colors:          list of line colors; if None, uses the style's prop_cycle colors.
+        legend_map:      dict mapping key -> display label.
+        y_lim:           (min, max) for y-axis, or None for auto.
+        window_size:     rolling-average window (1 = no smoothing).
+        save_path:       if given, saves figure as <save_path>.pdf.
+        plot_raw:        overlay raw dashed trace under the smoothed line.
+        fontsize_title:  title font size (default: rcParams axes.titlesize).
+        fontsize_label:  x/y axis label font size (default: rcParams axes.labelsize).
+        fontsize_legend: legend font size (default: rcParams legend.fontsize).
+        fontsize_tick:   tick label font size (default: rcParams xtick/ytick.labelsize).
+    """
+    # Resolve font sizes from rcParams if not provided
+    _title_fs  = fontsize_title  or plt.rcParams.get("axes.titlesize",  20)
+    _label_fs  = fontsize_label  or plt.rcParams.get("axes.labelsize",  24)
+    _legend_fs = fontsize_legend or plt.rcParams.get("legend.fontsize", 20)
+    _tick_fs   = fontsize_tick   or plt.rcParams.get("xtick.labelsize", 20)
+
+    # Resolve colors: use provided list, style prop_cycle, or a safe fallback
+    if colors is None:
+        prop_cycle = plt.rcParams.get("axes.prop_cycle", None)
+        colors = [c["color"] for c in prop_cycle] if prop_cycle else \
+                 ["red", "green", "blue", "orange", "purple", "brown"]
+        color_palette='colorblind'
+        # color_palette = sns.color_palette(color_palette, n_colors=len(data_dict))
+        color_palette = sns.color_palette(color_palette, n_colors=len(data_dict)+skip_color)
+        colors = dict(zip(data_dict, color_palette))
+        print(colors)
+    if len(colors) < len(data_dict):
+        colors = [colors[i % len(colors)] for i in range(len(data_dict))]
+        color_palette='colorblind'
+        color_palette = sns.color_palette(color_palette, n_colors=len(data_dict))
+        colors = dict(zip(data_dict, color_palette))
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for idx, (key, df) in enumerate(data_dict.items()):
+        label = legend_map.get(key, str(key)) if legend_map else str(key)
+        steps = df["Step"].values
+        values = df["Value"].values
+        print(f"key: {key}")
+        color = colors[key]
+        # color = colors[idx]
+
+        if plot_raw:
+            ax.plot(steps, values, linestyle="dashed", linewidth=raw_linewidth,
+                    alpha=raw_alpha, color=color)
+
+        if len(values) >= window_size:
+            smoothed = pd.Series(values).rolling(window=window_size, min_periods=1).mean().values
+            ax.plot(steps, smoothed, color=color, linewidth=smooth_linewidth, label=label)
+        else:
+            ax.plot(steps, values, color=color, linewidth=smooth_linewidth, label=label)
+
+    # handles, labels = ax.get_legend_handles_labels()
+    # ax.legend(shadow=True, fontsize='x-large', reverse=True)
+    if y_lim is not None:
+        ax.set_ylim(y_lim)
+    ax.set_title(title, fontsize=_title_fs)
+    ax.set_xlabel(x_label, fontsize=_label_fs)
+    ax.set_ylabel(y_label, fontsize=_label_fs)
+    ax.tick_params(axis="x", labelsize=_tick_fs)
+    ax.tick_params(axis="y", labelsize=_tick_fs)
+    if is_legend:
+        ax.legend(fontsize=_legend_fs, reverse=True)
+    if save_path:
+        fig.savefig(f"{save_path}.pdf", dpi=dpi, bbox_inches="tight")
+    fig.tight_layout()
+    plt.show()
