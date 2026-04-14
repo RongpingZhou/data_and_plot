@@ -94,7 +94,14 @@ class StratifiedBootstrap(arch_bs.IIDBootstrap):
     """
 
     # super().__init__(*args, random_state=random_state, **kwargs)
-    super().__init__(*args, **kwargs)
+    # super().__init__(*args, **kwargs)
+
+    filtered_kwargs = {k: v for k, v in kwargs.items() if v is not None}
+    if random_state is not None:
+        filtered_kwargs['seed'] = random_state
+
+    super().__init__(*args, **filtered_kwargs)
+    
     self._args_shape = args[0].shape
     self._num_tasks = self._args_shape[1]
     self._parameters = [self._num_tasks, task_bootstrap]
