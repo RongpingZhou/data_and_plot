@@ -4,11 +4,17 @@ import os
 
 # log_dir = "/home/wsl/mygit/rwrl_backup/runs/AtlantisNoFrameskip-v4/DQN_1/events.out.tfevents.1773319891.A512025.293052.0"
 # output_dir = "/home/wsl/mygit/rwrl_backup/runs/AtlantisNoFrameskip-v4/DQN_1/"
-log_dir = "C:\\GitHub\\data_and_plot\\wgzqrmn3\\tensorboard\\breakout_20260401_000009\\events.out.tfevents.1774962009.b3611ff33acb.2909.0"
-output_dir = "C:\\GitHub\\data_and_plot\\ep_rew_mean\\wgzqrmn3\\"
+# log_dir = "C:\\GitHub\\data_and_plot\\wgzqrmn3\\tensorboard\\breakout_20260401_000009\\events.out.tfevents.1774962009.b3611ff33acb.2909.0"
+# output_dir = "C:\\GitHub\\data_and_plot\\ep_rew_mean\\wgzqrmn3\\"
+log_dir = "C:\\GitHub\\data_and_plot\\wgzqrmn3\\tensorboard\\breakout_20260424_225843\\events.out.tfevents.1777035523.b3611ff33acb.6827.0"
+output_dir = "C:\\GitHub\\data_and_plot\\wgzqrmn3\\csv\\wgzqrmn3_20260424\\"
+# log_dir = "C:\\GitHub\\data_and_plot\\10_66_28_74\\tensorboard\\breakout_20260424_231658\\events.out.tfevents.1777036618.f9131d64a981.2853.0"
+# output_dir = "C:\\GitHub\\data_and_plot\\10_66_28_74\\csv\\breakout_20260424_231658\\"
+
 os.makedirs(output_dir, exist_ok=True)
 
 reader = SummaryReader(log_dir, extra_columns={'wall_time'})
+# reader = SummaryReader(log_dir, extra_columns={'Wall time'})
 
 # Export scalars
 df = reader.scalars
@@ -37,6 +43,8 @@ for tag, group in df.groupby("tag"):
     if "wall_time" in group.columns:
         cols = ["wall_time"] + [c for c in group.columns if c != "wall_time"]
         group = group[cols]
+    # Rename wall_time → "Wall time"
+    group = group.rename(columns={"wall_time": "Wall time"})
     group.columns = [col.capitalize() for col in group.columns]
 
     out_path = os.path.join(output_dir, f"{safe_tag}.csv")

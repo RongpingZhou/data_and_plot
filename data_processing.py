@@ -101,18 +101,30 @@ def main():
                 
     # labels = ['real world system', 'real world input']
 
-    files = ['C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-0_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-1_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-2_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-3_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-4_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-5_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-6_000_000.npz',
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-7_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-8_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-9_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result\\breakout-data-dqn-model-10_000_000.npz']
+    files = ['C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-0_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-1_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-2_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-3_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-4_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-5_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-6_000_000.npz',
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-7_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-8_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-9_000_000.npz', 
+             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-10_000_000.npz'] # best
     
+    # files = ['C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-0_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-1_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-2_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-3_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-4_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-5_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-6_000_000.npz', # best
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-7_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-8_000_000.npz', # best
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-9_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-10_000_000.npz']
+
     labels = ['0_000_000', '1_000_000', '2_000_000', '3_000_000', '4_000_000', '5_000_000', '6_000_000', '7_000_000', '8_000_000', '9_000_000', '10_000_000']
 
     f = 0
@@ -189,9 +201,9 @@ def main():
         hns_dict[labels[i]] = scores_2d
         # hns_dict[labels[i]] = array_for_dict[i]
     
-    for key, value in hns_dict.items():
-        print(f"{key}: ")
-        print(f"{value}")    
+    # for key, value in hns_dict.items():
+    #     print(f"{key}: ")
+    #     print(f"{value}")    
 
     aggregate_func = lambda x: np.array([
         metrics.aggregate_median(x),

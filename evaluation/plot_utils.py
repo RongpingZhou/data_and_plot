@@ -272,7 +272,7 @@ def plot_interval_estimates(point_estimates,
     color_palette = sns.color_palette(color_palette, n_colors=len(algorithms)+skip_color)
     # color_palette = color_palette[1:]  # Skip the first color to avoid plotting with white color
     colors = dict(zip(algorithms, color_palette))
-    print(f"Colors used for plotting: {colors}")
+    # print(f"Colors used for plotting: {colors}")
   h = kwargs.pop('interval_height', 0.6)
 
   for idx, metric_name in enumerate(metric_names):
@@ -314,7 +314,7 @@ def plot_interval_estimates(point_estimates,
 #   fig.text(0.4, xlabel_y_coordinate, xlabel, ha='center', fontsize='xx-large')
   fig.text(0.4, xlabel_y_coordinate, xlabel, ha='center', fontsize=32)
   plt.subplots_adjust(wspace=kwargs.pop('wspace', 0.11), left=0.0)
-  print("Inside plot_interval_estimates, xlabel:", xlabel)
+#   print("Inside plot_interval_estimates, xlabel:", xlabel)
   return fig, axes
 
 

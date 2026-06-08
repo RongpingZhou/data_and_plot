@@ -508,7 +508,9 @@ def main():
         "simulation": np.array([[-0.02430556, -0.01944444, -0.01840278,  1.00381944],
        [ 0.01041667,  0.00138889, -0.00381944,  1.01840278]])}
 
-    
+    aggregate_scores_3sys = copy.deepcopy(aggregate_scores)
+    aggregate_score_cis_3sys = copy.deepcopy(aggregate_score_cis)
+        
     aggregate_scores['real world input'] = copy.deepcopy(aggregate_scores_3sys['real world input'])
     aggregate_score_cis['real world input'] = copy.deepcopy(aggregate_score_cis_3sys['real world input'])
     
@@ -780,6 +782,12 @@ def main():
        [0.11458333, 0.11111111, 0.11631944, 0.91180556]]), 
         "simulation": np.array([[0.01041667, 0.01041667, 0.01736111, 0.96006944],
        [0.04513889, 0.03333333, 0.03993056, 0.98263889]])}
+
+    # real world data at step 10_000_000
+    # aggregate_scores 10_000_000: [0.39236111 0.40069444 0.415625   0.584375  ]
+    # aggregate_score_cis 10_000_000:
+                                # [[0.35763889 0.36388889 0.38263889 0.55069444]
+                                #  [0.44444444 0.44027778 0.44930556 0.61736111]]
         
     aggregate_scores['real world system'] = copy.deepcopy(aggregate_scores_3sys['real world system'])
     aggregate_score_cis['real world system'] = copy.deepcopy(aggregate_score_cis_3sys['real world system'])
