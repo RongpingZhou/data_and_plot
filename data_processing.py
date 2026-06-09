@@ -101,17 +101,17 @@ def main():
                 
     # labels = ['real world system', 'real world input']
 
-    files = ['C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-0_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-1_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-2_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-3_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-4_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-5_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-6_000_000.npz',
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-7_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-8_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-9_000_000.npz', 
-             'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-10_000_000.npz'] # best
+    # files = ['C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-0_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-1_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-2_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-3_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-4_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-5_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-6_000_000.npz',
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-7_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-8_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-9_000_000.npz', 
+    #          'C:\\GitHub\\data_and_plot\\wgzqrmn3\\test_result_20260517\\breakout-data-dqn-model-10_000_000.npz'] # best
     
     # files = ['C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-0_000_000.npz', 
     #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-1_000_000.npz', 
@@ -125,7 +125,18 @@ def main():
     #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-9_000_000.npz', 
     #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-10_000_000.npz']
 
-    labels = ['0_000_000', '1_000_000', '2_000_000', '3_000_000', '4_000_000', '5_000_000', '6_000_000', '7_000_000', '8_000_000', '9_000_000', '10_000_000']
+    # labels = ['0_000_000', '1_000_000', '2_000_000', '3_000_000', '4_000_000', '5_000_000', '6_000_000', '7_000_000', '8_000_000', '9_000_000', '10_000_000']
+
+    # files = ['C:\\GitHub\\data_and_plot\\10_66_28_74\\test_data_for_real_input_20260517\\breakout-data-dqn-model-6_000_000.npz',
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\simulation\\20260609\\breakout-data-dqn-model-_huggingface_1.npz',
+    #          'C:\\GitHub\\data_and_plot\\10_66_28_74\\simulation\\20260609_10\\breakout-data-dqn-model-_huggingface_2.npz']
+    
+    # labels = ['6_000_000', 'huggingface_1', 'huggingface_2']
+
+    files = ['C:\\GitHub\\data_and_plot\\10_66_28_74\\simulation\\20260609\\breakout-data-dqn-model-_huggingface_1.npz',
+             'C:\\GitHub\\data_and_plot\\10_66_28_74\\simulation\\20260609_10\\breakout-data-dqn-model-_huggingface_2.npz']
+    
+    labels = ['huggingface_1', 'huggingface_2']
 
     f = 0
     

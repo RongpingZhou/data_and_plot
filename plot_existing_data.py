@@ -231,7 +231,8 @@ def main():
 
     aggregate_scores = {
         "real world system": np.array([0.40972222, 0.41041667, 0.42638889, 0.57361111]), 
-        "real world input": np.array([0.70486111, 0.72291667, 0.75      , 0.27517361]), "simulation": np.array([9.07291667, 9.07291667, 8.38055556, 0.        ])}
+        "real world input": np.array([0.70486111, 0.72291667, 0.75      , 0.27517361]), 
+        "simulation": np.array([9.07291667, 9.07291667, 8.38055556, 0.        ])}
     aggregate_score_cis = {
         "real world system": np.array([[0.35763889, 0.38055556, 0.39722222, 0.54375   ],
                                        [0.44444444, 0.44513889, 0.45625   , 0.60277778]]), 
@@ -240,6 +241,34 @@ def main():
         "simulation": np.array([[8.93402778, 8.73680556, 7.90347222, 0.        ],
                                 [9.21180556, 9.29791667, 8.83333333, 0.        ]])}
 
+    # real world data at step 10_000_000
+    # training: wgzqrmn3/tensorboard/breakout_20260424_225843/events.out.tfevents.1777035523.b3611ff33acb.6827.0
+    # model: wgzqrmn3/saved_models/model_updates_dqn_breakout_8000000.pth
+    # data: wgzqrmn3/test_data_for_real_input_20260517/breakout-data-dqn-model-10_000_000.npz
+    # aggregate_scores 10_000_000:    [0.39236111 0.40069444 0.415625   0.584375  ]
+    # aggregate_score_cis 10_000_000:
+                                #    [[0.35763889 0.36388889 0.38263889 0.55069444]
+                                #     [0.44444444 0.44027778 0.44930556 0.61736111]]
+        
+    # real world input data at step 8_000_000
+    # training: 10_66_28_74/tensorboard/breakout_20260424_231658/events.out.tfevents.1777036618.f9131d64a981.2853.0
+    # model: 10_66_28_74/saved_models/code_061_model_updates_dqn_breakout_10000000.pth
+    # data: 10_66_28_74/test_result_20260517/breakout_test_result_10_000_000.npz
+    # aggregate_scores 8_000_000:      [0.67013889 0.65138889 0.69097222 0.33489583]
+    # aggregate_score_cis 8_000_000:  [[0.60069444 0.60277778 0.64131944 0.29548611]
+    #                                  [0.70486111 0.70416667 0.74236111 0.37430556]]
+
+    # aggregate_scores 6_000_000:      [0.67013889 0.65555556 0.67881944 0.3328125 ]
+    # aggregate_score_cis 6_000_000:  [[0.60069444 0.6        0.63332465 0.29149306]
+    #                                  [0.70486111 0.71458333 0.72570313 0.37430556]]
+
+    # aggregate_scores huggingface:    [0.01041667 0.04027778 0.09548611 0.90451389]
+    # aggregate_score_cis huggingface:[[0.01041667 0.00416667 0.06319444 0.87083333]
+    #                                  [0.0625     0.09305556 0.12916667 0.93680556]]
+    
+    # simulation
+    # model: https://huggingface.co/sb3/dqn-BreakoutNoFrameskip-v4
+    # data: 
 
     aggregate_scores_3sys = copy.deepcopy(aggregate_scores)
     aggregate_score_cis_3sys = copy.deepcopy(aggregate_score_cis)
@@ -507,6 +536,19 @@ def main():
        [0.79166667, 0.77152778, 0.79791667, 0.31163194]]), 
         "simulation": np.array([[-0.02430556, -0.01944444, -0.01840278,  1.00381944],
        [ 0.01041667,  0.00138889, -0.00381944,  1.01840278]])}
+
+    # real world input data at step 8_000_000
+    # training: 10_66_28_74/tensorboard/breakout_20260424_231658/events.out.tfevents.1777036618.f9131d64a981.2853.0
+    # model: 10_66_28_74/saved_models/code_061_model_updates_dqn_breakout_10000000.pth
+    # data: 10_66_28_74/test_result_20260517/breakout_test_result_10_000_000.npz
+    # aggregate_scores 8_000_000:      [0.67013889 0.65138889 0.69097222 0.33489583]
+    # aggregate_score_cis 8_000_000:  [[0.60069444 0.60277778 0.64131944 0.29548611]
+    #                                  [0.70486111 0.70416667 0.74236111 0.37430556]]
+
+    # aggregate_scores huggingface:    [0.01041667 0.04027778 0.09548611 0.90451389]
+    # aggregate_score_cis huggingface:[[0.01041667 0.00416667 0.06319444 0.87083333]
+    #                                  [0.0625     0.09305556 0.12916667 0.93680556]]
+
 
     aggregate_scores_3sys = copy.deepcopy(aggregate_scores)
     aggregate_score_cis_3sys = copy.deepcopy(aggregate_score_cis)
@@ -783,12 +825,6 @@ def main():
         "simulation": np.array([[0.01041667, 0.01041667, 0.01736111, 0.96006944],
        [0.04513889, 0.03333333, 0.03993056, 0.98263889]])}
 
-    # real world data at step 10_000_000
-    # aggregate_scores 10_000_000: [0.39236111 0.40069444 0.415625   0.584375  ]
-    # aggregate_score_cis 10_000_000:
-                                # [[0.35763889 0.36388889 0.38263889 0.55069444]
-                                #  [0.44444444 0.44027778 0.44930556 0.61736111]]
-        
     aggregate_scores['real world system'] = copy.deepcopy(aggregate_scores_3sys['real world system'])
     aggregate_score_cis['real world system'] = copy.deepcopy(aggregate_score_cis_3sys['real world system'])
         
