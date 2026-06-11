@@ -1,0 +1,1 @@
+python train.py --algo dqn --env BreakoutNoFrameskip-v4 --seed 37 --n-timesteps 10000000 --tensorboard-log ./runs/
